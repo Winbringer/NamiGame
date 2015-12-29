@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace GameForNamiFromVictorem
 {
@@ -12,11 +13,23 @@ namespace GameForNamiFromVictorem
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D fon;
+        Texture2D Spite;
+        Texture2D fuck;
+        SoundEffect shoot;
+        DrawPresenter DrawPresenter;
+        UpdatePresenter UpdatePresenter;
+
+        int frameWidth = 108;
+        int frameHeight = 140;
+        Point currentFrame = new Point(0, 0);
+        Point spriteSize = new Point(8, 2);
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            DrawPresenter = new DrawPresenter();
+            UpdatePresenter = new UpdatePresenter();
         }
 
         /// <summary>
@@ -44,7 +57,10 @@ namespace GameForNamiFromVictorem
 
             // TODO: use this.Content to load your game content here
             fon = Content.Load<Texture2D>("fon");
-           
+            Spite = Content.Load<Texture2D>("Sprite");
+            fuck = Content.Load<Texture2D>("fuck");
+            shoot = Content.Load<SoundEffect>("shoot");
+
         }
 
         /// <summary>
@@ -54,7 +70,7 @@ namespace GameForNamiFromVictorem
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-           
+            Content.Unload();
         }
 
         /// <summary>
@@ -68,7 +84,7 @@ namespace GameForNamiFromVictorem
                 Exit();
 
             // TODO: Add your update logic here
-
+            UpdatePresenter.Update();
             base.Update(gameTime);
         }
 
@@ -84,6 +100,7 @@ namespace GameForNamiFromVictorem
             spriteBatch.Begin();
             spriteBatch.Draw(fon, Vector2.Zero, Color.White);
             spriteBatch.End();
+            UpdatePresenter.Update();
             base.Draw(gameTime);
         }
     }
