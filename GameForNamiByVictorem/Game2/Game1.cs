@@ -19,17 +19,17 @@ namespace GameForNamiFromVictorem
         DrawPresenter DrawPresenter;
         UpdatePresenter UpdatePresenter;
 
-        int frameWidth = 108;
-        int frameHeight = 140;
+        int frameWidth = 400;
+        int frameHeight = 400;
         Point currentFrame = new Point(0, 0);
-        Point spriteSize = new Point(8, 2);
+        Point spriteSize = new Point(6, 3);
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            DrawPresenter = new DrawPresenter();
-            UpdatePresenter = new UpdatePresenter();
+            DrawPresenter = new DrawPresenter(this);
+            UpdatePresenter = new UpdatePresenter(this);
         }
 
         /// <summary>
