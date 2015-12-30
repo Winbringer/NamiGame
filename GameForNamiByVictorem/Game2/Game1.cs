@@ -90,8 +90,9 @@ namespace GameForNamiFromVictorem
             Sprite = Content.Load<Texture2D>("Sprite");
             fuck = Content.Load<Texture2D>("fuck");            
             font = Content.Load<SpriteFont>("font");
-            player = new Nami() { Alive = true, game = this, Position = Vector2.Zero, Texture = Sprite, Size = new Microsoft.Xna.Framework.Point(frameWidth, frameHeight), Speed = 5 };
+            player = new Nami(this) { Alive = true, game = this, Position = Vector2.Zero, Texture = Sprite, Size = new Microsoft.Xna.Framework.Point(frameWidth, frameHeight), Speed = 5 };
             chars.Add(player);
+            chars.Add(new Mem(this) {Speed = 5, Texture = Sprite });
         }
 
         /// <summary>

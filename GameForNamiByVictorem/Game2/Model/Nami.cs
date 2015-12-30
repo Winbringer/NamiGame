@@ -11,11 +11,18 @@ namespace GameForNamiFromVictorem.Model
 {
     public class Nami : AbstractGameCharakter
     {
-       DateTime shootTime=DateTime.Now;
+        DateTime shootTime;
+        Rectangle rect;
+        public Nami(Game1 game)
+        {
+            this.game = game;
+            shootTime = DateTime.Now;
+            rect = new Rectangle(game.FrameWidth * 3, game.FrameHeight * 2, game.FrameWidth, game.FrameHeight);
+        }
         public override void Die()
         {
             this.Alive = false;
-            Rectangle rect = new Rectangle(game.FrameWidth * 2, game.FrameHeight * 2, game.FrameWidth, game.FrameHeight);
+            rect = new Rectangle(game.FrameWidth * 2, game.FrameHeight * 2, game.FrameWidth, game.FrameHeight);
             this.DrawRect(rect);
             game.IsLoose = true;
         }
@@ -24,15 +31,14 @@ namespace GameForNamiFromVictorem.Model
         {
             if (this.Alive)
             {
-                Rectangle rect = new Rectangle(game.FrameWidth * 3, game.FrameHeight * 2, game.FrameWidth, game.FrameHeight);
-                this.DrawRect(rect);              
+                this.DrawRect(rect);
             }
             // sBatch.Draw(this.Texture,)
         }
 
         public override void Move()
         {
-           
+
             if (this.Alive)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left))
@@ -71,25 +77,25 @@ namespace GameForNamiFromVictorem.Model
         {
             if (this.Alive)
             {
-              DateTime now =  DateTime.Now;
+                DateTime now = DateTime.Now;
                 TimeSpan TS = now - shootTime;
-                if(TS.TotalMilliseconds>100)
-                if ((Mouse.GetState().LeftButton == ButtonState.Pressed) || Keyboard.GetState().IsKeyDown(Keys.Enter))
-                {
-                    Fuck f = new Fuck()
+                if (TS.TotalMilliseconds > 100)
+                    if ((Mouse.GetState().LeftButton == ButtonState.Pressed) || Keyboard.GetState().IsKeyDown(Keys.Enter))
                     {
-                        Texture = game.Fuck,
-                        Alive = true,
-                        game = this.game,
-                        Size = new Point(180, 321),
-                        Speed = 10
-                    };
-                    f.Position = new Vector2((this.Position.X + this.Size.X + 3), ((this.Position.Y + this.Size.Y / 2)-f.Size.Y/2));
-                    game.Chars.Add(f);
-                    shootTime = DateTime.Now;
-                }
+                        Fuck f = new Fuck()
+                        {
+                            Texture = game.Fuck,
+                            Alive = true,
+                            game = this.game,
+                            Size = new Point(180, 321),
+                            Speed = 10
+                        };
+                        f.Position = new Vector2((this.Position.X + this.Size.X + 3), ((this.Position.Y + this.Size.Y / 2) - f.Size.Y / 2));
+                        game.Chars.Add(f);
+                        shootTime = DateTime.Now;
+                    }
             }
-           
+
         }
     }
 }
