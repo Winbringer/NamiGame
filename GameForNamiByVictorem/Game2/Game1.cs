@@ -6,6 +6,7 @@ using System.Text;
 using System.Drawing;
 using System.Collections.Generic;
 using GameForNamiFromVictorem.Model;
+using System;
 
 //using System.Windows.Forms;
 
@@ -24,20 +25,23 @@ namespace GameForNamiFromVictorem
         SoundEffect shoot;
         SpriteFont font;
         const int frameWidth = 400;
-        const int frameHeight = 400;
-        Microsoft.Xna.Framework.Point currentFrame = new Microsoft.Xna.Framework.Point(0, 0);
-        Microsoft.Xna.Framework.Point spriteSize = new Microsoft.Xna.Framework.Point(6, 3);
-        bool IsPlyng;
-        bool IsPaused;
-        bool IsLoose;
+        const int frameHeight = 400;         
+      public  bool IsPaused { get; set; }
+      public bool IsLoose
+        {
+            get; set;
+        }
         List<AbstractGameCharakter> chars;
+        Nami player;
+       
+       public int TimePassed { get; set; }
 
         public int FrameWidth { get { return frameWidth; } }
-        public int FrameHeight { get { return frameHeight; } }
-        public Microsoft.Xna.Framework.Point CurrentFrame { get { return currentFrame; } }
-        public Microsoft.Xna.Framework.Point SpriteSize { get { return spriteSize; } }
+        public int FrameHeight { get { return frameHeight; } }        
         public float Scale { get; set; }
         public SpriteBatch SpiteBatch { get { return this.spriteBatch; } }
+        public List<AbstractGameCharakter> Chars { get { return chars; } }
+        public Texture2D Fuck { get { return fuck; } }
 
         public Game1()
         {
@@ -51,6 +55,8 @@ namespace GameForNamiFromVictorem
             Window.AllowUserResizing = true;
             chars = new List<AbstractGameCharakter>();
             this.Scale = 0.1f;
+            IsLoose = false;
+            IsPaused = false;
             //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             //graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             //graphics.IsFullScreen = true;       
@@ -84,7 +90,8 @@ namespace GameForNamiFromVictorem
             Sprite = Content.Load<Texture2D>("Sprite");
             fuck = Content.Load<Texture2D>("fuck");            
             font = Content.Load<SpriteFont>("font");
-            chars.Add(new Nami() { Alive = true, game = this, Position = Vector2.Zero, Texture = Sprite, Size = new Microsoft.Xna.Framework.Point(frameWidth, frameHeight), Speed = 2 });
+            player = new Nami() { Alive = true, game = this, Position = Vector2.Zero, Texture = Sprite, Size = new Microsoft.Xna.Framework.Point(frameWidth, frameHeight), Speed = 5 };
+            chars.Add(player);
         }
 
         /// <summary>
@@ -104,15 +111,18 @@ namespace GameForNamiFromVictorem
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
+           
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
                 Exit();
             }
             else
             {
+                TimePassed = gameTime.ElapsedGameTime.Milliseconds;
+                player.Shoot();
                 foreach (var item in chars)
-                {
-                    if (item is Nami) ((Nami)item).Shoot();
+                {                    
                     item.Move();
                 }
                 base.Update(gameTime);
@@ -130,7 +140,7 @@ namespace GameForNamiFromVictorem
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(fon, Vector2.Zero, Microsoft.Xna.Framework.Color.White);
-            string text = "Для выхода из игры нажмите Esc или Alt+F4. \n\rДля переключения между окнами нажмите Alt + Tab \n\rДля паузы / играть нажмите пробел. \n\rДля движения используйте клавищи W S A D или Стрелочки на клавиатуре. \n\rДля стрельбы используйте левую кнопку мыши или клавишу ввод (Enter) \n\r2015 год. Victorem для Nami <3 \n\rГруппа стримерши Юля Nami: vk.com/kezumie ";
+            string text = "Для выхода из игры нажмите Esc или Alt+F4. \n\rДля переключения между окнами нажмите Alt + Tab \n\rДля паузы / играть нажмите пробел. \n\rДля движения используйте клавищи W S A D или Стрелочки на клавиатуре. \n\rДля стрельбы используйте левую кнопку мыши или клавишу ввод (Enter) \n\r2015 год. Victorem для Nami <3 \n\rГруппа стримерши Юля Nami: vk.com/kezumie \n\rОбъектов "+chars.Count;
             spriteBatch.DrawString(font, text, Vector2.Zero, Microsoft.Xna.Framework.Color.Red);
             foreach (var item in chars)
             {
