@@ -22,9 +22,8 @@ namespace GameForNamiFromVictorem.Model
         public override void Die()
         {
             this.Alive = false;
-            rect = new Rectangle(game.FrameWidth * 2, game.FrameHeight * 2, game.FrameWidth, game.FrameHeight);
-            this.DrawRect(rect);
-            game.IsLoose = true;
+            rect = new Rectangle(game.FrameWidth * 2, game.FrameHeight * 2, game.FrameWidth, game.FrameHeight);            
+            game.IsLoose = true;            
         }
 
         public override void Draw()
@@ -88,7 +87,7 @@ namespace GameForNamiFromVictorem.Model
                             Alive = true,
                             game = this.game,
                             Size = new Point(180, 321),
-                            Speed = 10
+                            Speed = game.fuckSpeed
                         };
                         f.Position = new Vector2((this.Position.X + this.Size.X + 3), ((this.Position.Y + this.Size.Y / 2) - f.Size.Y / 2));
                         game.Chars.Add(f);

@@ -121,6 +121,7 @@ namespace GameForNamiFromVictorem.Model
         }
         public bool CollideWall()
         {
+            if (game == null || game.Window == null) return true;
             return this.CollideBotom() ||
                 this.CollideLeft() ||
                 this.CollideRight() ||
