@@ -66,7 +66,7 @@ namespace GameForNamiFromVictorem
             Heiters = 0;
             //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             //graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            graphics.IsFullScreen = true;
+           // graphics.IsFullScreen = true;
         }
 
         /// <summary>
@@ -97,7 +97,15 @@ namespace GameForNamiFromVictorem
             Sprite = Content.Load<Texture2D>("Sprite");
             fuck = Content.Load<Texture2D>("fuck");
             font = Content.Load<SpriteFont>("font");
-            player = new Nami(this) { Alive = true, game = this, Position = new Vector2(5f, Window.ClientBounds.Height / 2 - 50), Texture = Sprite, Size = new Microsoft.Xna.Framework.Point(frameWidth, frameHeight), Speed = playerSpeed };
+            player = new Nami(this)
+            {
+                Alive = true,
+                game = this,
+                Position = new Vector2(5f, Window.ClientBounds.Height / 2 - 50),
+                Texture = Sprite,
+                Size = new Microsoft.Xna.Framework.Point(frameWidth, frameHeight),
+                Speed = playerSpeed
+            };
             chars.Add(player);
         }
 
@@ -122,7 +130,8 @@ namespace GameForNamiFromVictorem
             {
 
 
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed ||
+                    Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
                 {
                     Exit();
                     return;
@@ -155,10 +164,10 @@ namespace GameForNamiFromVictorem
                                 }
                             }
                         }
-                        player.Shoot();
+                        player.\
                         foreach (var item in chars)
                         {
-                            item.Move();
+                            item.Live();
                         }
                         foreach (var i in chars)
                         {
@@ -179,7 +188,15 @@ namespace GameForNamiFromVictorem
                     if (IsLoose && Keyboard.GetState().IsKeyDown(Keys.N))
                     {
                         chars = new List<AbstractGameCharakter>();
-                        player = new Nami(this) { Alive = true, game = this, Position = new Vector2(5f, Window.ClientBounds.Height / 2 - 50), Texture = Sprite, Size = new Microsoft.Xna.Framework.Point(frameWidth, frameHeight), Speed = playerSpeed };
+                        player = new Nami(this)
+                        {
+                            Alive = true,
+                            game = this,
+                            Position = new Vector2(5f, Window.ClientBounds.Height / 2 - 50),
+                            Texture = Sprite,
+                            Size = new Microsoft.Xna.Framework.Point(frameWidth, frameHeight),
+                            Speed = playerSpeed
+                        };
                         chars.Add(player);
                         memSpeed = 1;
                         fuckSpeed = 10;

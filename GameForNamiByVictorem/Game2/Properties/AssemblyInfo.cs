@@ -1,15 +1,16 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Game2")]
-[assembly: AssemblyProduct("Game2")]
+[assembly: AssemblyTitle("GameForNamiFromVictorem")]
+[assembly: AssemblyProduct("GameForNamiFromVictorem")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyDescription("Julia Nami <3")]
+[assembly: AssemblyCompany("VictoremWinbringer")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -34,3 +35,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("3.4.0.456")]
 [assembly: AssemblyFileVersion("3.4.0.456")]
+[assembly: NeutralResourcesLanguage("ru")]
+

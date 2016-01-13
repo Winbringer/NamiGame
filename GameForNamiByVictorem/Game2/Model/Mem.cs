@@ -64,7 +64,7 @@ namespace GameForNamiFromVictorem.Model
 
         }
 
-        public override void Move()
+        protected override void Move()
         {
             if (activ)
             {
@@ -78,6 +78,11 @@ namespace GameForNamiFromVictorem.Model
                 }
             }
 
+        }
+
+        public override void Live()
+        {
+            this.Move();           
         }
     }
 }

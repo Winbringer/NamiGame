@@ -8,12 +8,17 @@ namespace GameForNamiFromVictorem.Model
 {
     class Fuck : AbstractGameCharakter
     {
-        public override void Die()
+        public override void Live()
+        {
+            this.Move();           
+        }
+
+      public override  void Die()
         {
             this.Alive = false;           
         }
 
-        public override void Draw()
+      public  override void Draw()
         {
             if (this.Alive)
             {
@@ -23,7 +28,7 @@ namespace GameForNamiFromVictorem.Model
            
         }
 
-        public override void Move()
+        protected override void Move()
         {
             if (this.Alive)
             {

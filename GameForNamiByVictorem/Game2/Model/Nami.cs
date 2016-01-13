@@ -35,7 +35,7 @@ namespace GameForNamiFromVictorem.Model
             // sBatch.Draw(this.Texture,)
         }
 
-        public override void Move()
+        protected override void Move()
         {
 
             if (this.Alive)
@@ -72,7 +72,7 @@ namespace GameForNamiFromVictorem.Model
             }
 
         }
-        public void Shoot()
+      public   void Shoot()
         {
             if (this.Alive)
             {
@@ -95,6 +95,12 @@ namespace GameForNamiFromVictorem.Model
                     }
             }
 
+        }
+
+        public override void Live()
+        {
+            this.Shoot();
+            this.Move();            
         }
     }
 }
