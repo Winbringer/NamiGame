@@ -44,6 +44,10 @@ namespace GameForNamiFromVictorem.Model
         public couse Course { get; set; }
         public Texture2D Texture { get; set; }
         public int Speed { get; set; }
+        public abstract void Draw();
+        public abstract void Move();
+        public abstract void Die();
+
         protected void DrawRect(Rectangle rect)
         {
             game.SpiteBatch.Draw(this.Texture, this.Position, rect, Color.White, 0, Vector2.Zero, game.Scale, SpriteEffects.None, 0);
@@ -123,9 +127,5 @@ namespace GameForNamiFromVictorem.Model
                 this.CollideRight() ||
                 this.CollideTop();
         }
-        protected abstract void Move();
-        public abstract void Draw();
-        public abstract void Die();    
-        public abstract void Live();
     }
 }
