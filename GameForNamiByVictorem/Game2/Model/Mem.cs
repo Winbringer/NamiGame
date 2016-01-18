@@ -27,9 +27,12 @@ namespace GameForNamiFromVictorem.Model
         }
         public override void Die()
         {
-            activ = false;
-            game.Heiters += 1;
-
+            if (activ)
+            {
+                activ = false;
+                game.Heiters += 1;
+                game.TotalKilled += 1;
+            }
         }
 
         public override void Draw()

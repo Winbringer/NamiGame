@@ -10,7 +10,7 @@ namespace GameForNamiFromVictorem.Model
     {
         public override void Die()
         {
-            this.Alive = false;           
+         if(Alive) this.Alive = false;           
         }
 
         public override void Draw()

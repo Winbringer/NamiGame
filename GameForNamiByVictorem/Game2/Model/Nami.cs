@@ -21,9 +21,12 @@ namespace GameForNamiFromVictorem.Model
         }
         public override void Die()
         {
-            this.Alive = false;
-            rect = new Rectangle(game.FrameWidth * 2, game.FrameHeight * 2, game.FrameWidth, game.FrameHeight);            
-            game.IsLoose = true;            
+            if (Alive)
+            {
+                this.Alive = false;
+                rect = new Rectangle(game.FrameWidth * 2, game.FrameHeight * 2, game.FrameWidth, game.FrameHeight);
+                game.IsLoose = true;
+            }          
         }
 
         public override void Draw()
@@ -78,7 +81,7 @@ namespace GameForNamiFromVictorem.Model
             {
                 DateTime now = DateTime.Now;
                 TimeSpan TS = now - shootTime;
-                if (TS.TotalMilliseconds > 100)
+                if (TS.TotalMilliseconds > 200)
                     if ((Mouse.GetState().LeftButton == ButtonState.Pressed) || Keyboard.GetState().IsKeyDown(Keys.Enter))
                     {
                         Fuck f = new Fuck()
