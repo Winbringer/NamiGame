@@ -41,6 +41,12 @@
 /processorParam:TextureFormat=Color
 /build:fuck.png
 
+#begin sound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound.mp3
+
 #begin Sprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -51,10 +57,4 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:Sprite.png
-
-#begin sound.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sound.mp3
 
